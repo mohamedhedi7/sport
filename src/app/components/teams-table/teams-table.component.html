@@ -1,0 +1,29 @@
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Foundation</th>
+            <th scope="col">Players</th>
+            <th scope="col">Action</th>  
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let elt of teamsTab">   
+            <th scope="row">{{elt._id}}</th>
+            <td>{{elt.name}}</td>
+            <td>{{elt.owner}}</td>
+            <td>{{elt.foundation}}</td>
+            <td>
+                <p *ngFor="let e of elt.playersId">{{e.name}} : {{e.position}}</p>
+            </td>
+            <td>
+                <button class="btn btn-success mr-2" (click)="goToInfo(elt._id)">Info</button>
+                <button class="btn btn-warming mr-2" (click)="goToEdit(elt._id)">Edit</button>
+                <button class="btn btn-danger" (click)="deleteTeam(elt._id)">Delete</button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
