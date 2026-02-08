@@ -3,12 +3,11 @@ const express = require("express")
 const cors = require("cors")
 const mongoose = require("mongoose")
 mongoose.connect('mongodb://127.0.0.1:27017/sportDB');
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
+
 const session = require("express-session")
 const multer = require("multer")
 const path = require("path")
-const axios = require("axios")
+
 
 //create express app
 const app = express()
@@ -21,14 +20,7 @@ app.use(session({
     secret: secretKey,
 }));
 app.use('/images', express.static(path.join('backend/uploads')))
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "backend/uploads");
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
-});
+
 
 //models import
 const Player = require("./models/player")
@@ -41,7 +33,13 @@ const playerRoutes = require("./routes/player-routes")
 const userRoutes = require("./routes/user-routes")
 const teamRoutes = require("./routes/team-routes")
 const matchRoutes = require("./routes/match-routes")
+const apiRoutes = require("./routes/api-routes")
+
 app.use("/matches", matchRoutes)
+app.use("/api", apiRoutes)
+app.use("/players", playerRoutes)
+app.use("/users", userRoutes)
+app.use("/teams", teamRoutes)
 const stadiumRoutes = require("./routes/stadium-routes")
 
 let teamsTab = [
@@ -99,36 +97,7 @@ app.post("/stadiums", (req, res) => {
 
 
 
-//business logic : search weather
-app.post("/weather", (req, res) => {
-    console.log("Business Logic : search weather", req.body);
-    let apiKey = "ff5513587e0b09cd8c739638f5172e5b"
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${req.body.city}&appid=${apiKey}`
-    axios.get(apiUrl).then((apiResponse) => {
-        console.log("here is res from api ", apiResponse.data.weather[0].icon);
-        let r = apiResponse.data;
-        let obj = {
-            temp: r.main.temp,
-            pressure: r.main.pressure,
-            humidity: r.main.humidity,
-            windSpeed: r.wind.speed,
-            country: r.sys.country,
-            icon: r.weather[0].icon
 
-        }
-        res.json({ weather: obj })
-    })
-})
-
-app.post("/api/searchTeamPlayers", (req, res) => {
-    console.log("Business Logic : search team players from api")
-    console.log(req.body);
-    let apiUrl = `https://apiv2.allsportsapi.com/football/?met=Teams&teamName=${req.body.name}&APIkey=d603f30d9e184cc8efb474d7535ba2c22af9458b988af4715402a5d785c8aa30`
-    axios.get(apiUrl).then(
-        (apiResponse) => {
-            console.log("here is res from api ", apiResponse);
-        })
-})
 
 app.get("/players/search/:playerName", (req, res) => {
     console.log("Business Logic : get match by team");
