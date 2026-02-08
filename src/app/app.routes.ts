@@ -18,6 +18,7 @@ import { PlayerInfoComponent } from './components/player-info/player-info.compon
 import { EditPlayerComponent } from './components/edit-player/edit-player.component';
 import { AddStadiumComponent } from './components/add-stadium/add-stadium.component';
 import { WeatherComponent } from './components/weather/weather.component';
+import { SearchMatchesComponent } from './components/search-matches/search-matches.component';
 
 export const routes: Routes = [
     {path : "", component : HomeComponent},
@@ -40,6 +41,7 @@ export const routes: Routes = [
     {path : "playerInfo/:id", component : PlayerInfoComponent},
     {path : "editPlayer/:id", component : EditPlayerComponent},
     {path : "weather", component : WeatherComponent},
+    {path : "searchMatch", component : SearchMatchesComponent},
 
 ];
     

@@ -26,7 +26,7 @@ router.post("/weather", (req, res) => {
     })
 })
 
-router.post("/api/searchTeamPlayers", (req, res) => {
+router.post("/searchTeamPlayers", (req, res) => {
     console.log("Business Logic : search team players from api")
     console.log(req.body);
     let apiUrl = `https://apiv2.allsportsapi.com/football/?met=Teams&teamName=${req.body.name}&APIkey=d603f30d9e184cc8efb474d7535ba2c22af9458b988af4715402a5d785c8aa30`

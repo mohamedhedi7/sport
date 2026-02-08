@@ -1,0 +1,21 @@
+<div class="hero overlay" style="background-image: url('images/bg_3.jpg');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-9 mx-auto text-center">
+                <h1 class="text-white">Search Match</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<form [formGroup]="searchMatch">
+    <div class="form-group">
+        <input type="text" class="form-control mt-4" formControlName="rech" name="recherche" placeholder="Recherche">
+    </div>
+    <div class="form-group text-center mt-3">
+        <input type="submit" (click)="search()" class="btn btn-primary py-3 px-5" value="Search">
+    </div>
+</form>
+<div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+</div>
+<app-result *ngFor="let elt of matches" [obj]="elt"></app-result>

@@ -30,7 +30,7 @@ export class MatchService {
   }
 
   getMatchByTeamName(teamName: any) {
-    return this.httpClient.get(this.matchUrl + '/search/' + teamName)
+    return this.httpClient.get<{ matches: any , msg: string }>(this.matchUrl + '/search/' + teamName)
   }
 
 }

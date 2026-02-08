@@ -2,7 +2,7 @@ const express = require("express")
 //router : mini router for navigation
 const router = express.Router();
 
-const Team = require("./models/team")
+const Team = require("../models/team")
 
 //business logic : get all teams
 router.get("/teams", (req, res) => {

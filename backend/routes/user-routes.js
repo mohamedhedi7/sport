@@ -1,8 +1,16 @@
 const express = require("express")
+const multer = require("multer")
 //router : mini router for navigation
 const router = express.Router();
-
-const Team = require("./models/team")
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "backend/uploads");
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+const User = require("../models/user")
 //business logic : user signup
 // 1 : User signed up succesfully
 // 2 : Email already exists

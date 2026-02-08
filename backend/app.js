@@ -5,7 +5,6 @@ const mongoose = require("mongoose")
 mongoose.connect('mongodb://127.0.0.1:27017/sportDB');
 
 const session = require("express-session")
-const multer = require("multer")
 const path = require("path")
 
 
@@ -23,8 +22,6 @@ app.use('/images', express.static(path.join('backend/uploads')))
 
 
 //models import
-const Player = require("./models/player")
-const User = require("./models/user")
 const Team = require("./models/team")
 const Stadium = require("./models/stadium")
 
