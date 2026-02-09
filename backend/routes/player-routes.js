@@ -1,4 +1,6 @@
 const express = require("express")
+const mongoose = require("mongoose")
+
 //router : mini router for navigation
 const router = express.Router();
 
@@ -6,7 +8,7 @@ const Player = require("../models/player")
 const Team = require("../models/team")
 
 //business logic : get all players
-router.get("/players", (req, res) => {
+router.get("/", (req, res) => {
     console.log("Business Logic : get all players");
     Player.find().populate("tId").then((tab) => {
         console.log("tab : ", tab);
@@ -15,7 +17,7 @@ router.get("/players", (req, res) => {
 })
 
 //business logic : get player by id
-router.get("/players/:id", (req, res) => {
+router.get("/:id", (req, res) => {
     console.log("Business Logic : get player by id");
     Player.findById(req.params.id).then((obj) => {
         console.log("obj : ", obj);
@@ -24,7 +26,7 @@ router.get("/players/:id", (req, res) => {
 })
 
 //business logic : add player
-router.post("/players", (req, res) => {
+router.post("/", (req, res) => {
     console.log("Business Logic : add player", req.body);
     Team.findById(req.body.teamId).then((foundTeam) => {
         if (!foundTeam) {
@@ -55,7 +57,7 @@ router.post("/players", (req, res) => {
 })
 
 //business logic : edit player  
-router.put("/players", (req, res) => {
+router.put("/", (req, res) => {
     console.log("Business Logic : edit player");
     Player.updateOne({ _id: req.body._id }, req.body).then((result) => {
         console.log("result : ", result);

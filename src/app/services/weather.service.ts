@@ -10,6 +10,8 @@ export class WeatherService {
   constructor(private httpClient: HttpClient) { }
 
   searchWeather(obj:any) {
+    console.log(obj);
+    
     return this.httpClient.post<{weather: any }>(this.weatherUrl, obj)
   } 
 }

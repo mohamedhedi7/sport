@@ -1,7 +1,15 @@
 const express = require("express")
 const multer = require("multer")
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const path = require("path")
 //router : mini router for navigation
 const router = express.Router();
+const session = require("express-session")
+const secretKey = 'hedi2026';
+router.use(session({
+    secret: secretKey,
+}));
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "backend/uploads");
@@ -15,7 +23,7 @@ const User = require("../models/user")
 // 1 : User signed up succesfully
 // 2 : Email already exists
 // 3 : Error during signup
-router.post("/users/signup", multer({ storage: storage }).single("img"), (req, res) => {
+router.post("/signup", multer({ storage: storage }).single("img"), (req, res) => {
     console.log("Business Logic : user signup");
     User.findOne({ email: req.body.email }).then((foundUser) => {
         if (foundUser) {
@@ -41,7 +49,7 @@ router.post("/users/signup", multer({ storage: storage }).single("img"), (req, r
 // 1 : login successful
 // 2 : Email not found
 // 3 : wrong password  
-router.post("/users/login", (req, res) => {
+router.post("/login", (req, res) => {
     console.log("Business Logic : user login");
     console.log(req.body);
     User.findOne({ email: req.body.email }).then((foundUser) => {

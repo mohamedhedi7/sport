@@ -5,7 +5,7 @@ const router = express.Router();
 const Team = require("../models/team")
 
 //business logic : get all teams
-router.get("/teams", (req, res) => {
+router.get("/", (req, res) => {
     console.log("Business Logic : get all teams");
     Team.find().populate('playersId').then((tab) => {
         console.log("tab : ", tab);
@@ -14,7 +14,7 @@ router.get("/teams", (req, res) => {
 })
 
 //business logic : get team by id
-router.get("/teams/:id", (req, res) => {
+router.get("/:id", (req, res) => {
     console.log("Business Logic : get team by id");
     Team.findById(req.params.id).then((obj) => {
         console.log("obj : ", obj);
@@ -23,7 +23,7 @@ router.get("/teams/:id", (req, res) => {
 })
 
 //business logic : delete team by id
-router.delete("/teams/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
     console.log("Business Logic : delete team by id");
     Team.deleteOne({ _id: req.params.id }).then((result) => {
         console.log("result : ", result);
@@ -33,7 +33,7 @@ router.delete("/teams/:id", (req, res) => {
 
 
 //business logic : add team
-router.post("/teams", (req, res) => {
+router.post("/", (req, res) => {
     console.log("Business Logic : add team");
     let team = new Team(req.body);
     team.save((err, doc) => {
@@ -45,7 +45,7 @@ router.post("/teams", (req, res) => {
 })
 
 //business logic : edit team
-router.put("/teams", (req, res) => {
+router.put("/", (req, res) => {
     console.log("Business Logic : edit team");
     Team.updateOne({ _id: req.body._id }, req.body).then((result) => {
         console.log("result : ", result);

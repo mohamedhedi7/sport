@@ -4,7 +4,6 @@ const cors = require("cors")
 const mongoose = require("mongoose")
 mongoose.connect('mongodb://127.0.0.1:27017/sportDB');
 
-const session = require("express-session")
 const path = require("path")
 
 
@@ -14,10 +13,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-const secretKey = 'hedi2026';
-app.use(session({
-    secret: secretKey,
-}));
+
 app.use('/images', express.static(path.join('backend/uploads')))
 
 

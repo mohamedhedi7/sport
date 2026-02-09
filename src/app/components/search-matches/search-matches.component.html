@@ -7,15 +7,25 @@
         </div>
     </div>
 </div>
-<form [formGroup]="searchMatch">
-    <div class="form-group">
-        <input type="text" class="form-control mt-4" formControlName="rech" name="recherche" placeholder="Recherche">
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <form [formGroup]="searchMatch">
+                    <div class="form-group">
+                        <input type="text" class="form-control mt-4" formControlName="rech" name="recherche"
+                            placeholder="Recherche">
+                    </div>
+                    <div class="form-group text-center mt-3">
+                        <input type="submit" (click)="search()" class="btn btn-primary py-3 px-5" value="Search">
+                    </div>
+                </form>
+                <div *ngIf="errorMessage" class="alert alert-danger">
+                    {{ errorMessage }}
+                </div>
+                <app-result *ngFor="let elt of matches" [obj]="elt"></app-result>
+            </div>
+
+        </div>
     </div>
-    <div class="form-group text-center mt-3">
-        <input type="submit" (click)="search()" class="btn btn-primary py-3 px-5" value="Search">
-    </div>
-</form>
-<div *ngIf="errorMessage" class="alert alert-danger">
-    {{ errorMessage }}
 </div>
-<app-result *ngFor="let elt of matches" [obj]="elt"></app-result>
