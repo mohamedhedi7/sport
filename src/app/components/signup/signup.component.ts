@@ -46,9 +46,9 @@ export class SignupComponent {
   }
   onImageSelected(event: Event) {
     const inputElement = event.target as HTMLInputElement;
-    if (inputElement && inputElement.files && inputElement.files.length> 0) {
+    if (inputElement && inputElement.files && inputElement.files.length > 0) {
       this.file = inputElement.files[0];
-      console.log("here is selected file ",this.file);
+      console.log("here is selected file ", this.file);
     }
   }
 

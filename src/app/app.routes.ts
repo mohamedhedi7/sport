@@ -17,8 +17,10 @@ import { EditTeamComponent } from './components/edit-team/edit-team.component';
 import { PlayerInfoComponent } from './components/player-info/player-info.component';
 import { EditPlayerComponent } from './components/edit-player/edit-player.component';
 import { AddStadiumComponent } from './components/add-stadium/add-stadium.component';
-import { WeatherComponent } from './components/weather/weather.component';
 import { SearchMatchesComponent } from './components/search-matches/search-matches.component';
+import { StadiumsComponent } from './components/stadiums/stadiums.component';
+import { StadiumInfoComponent } from './components/stadium-info/stadium-info.component';
+import { EditStadiumComponent } from './components/edit-stadium/edit-stadium.component';
 
 export const routes: Routes = [
     {path : "", component : HomeComponent},
@@ -40,8 +42,10 @@ export const routes: Routes = [
     {path : "editTeam/:id", component : EditTeamComponent},
     {path : "playerInfo/:id", component : PlayerInfoComponent},
     {path : "editPlayer/:id", component : EditPlayerComponent},
-    {path : "weather", component : WeatherComponent},
     {path : "searchMatch", component : SearchMatchesComponent},
+    {path : "stadiums", component : StadiumsComponent},
+    {path : "stadiumInfo/:id", component : StadiumInfoComponent},
+    {path : "editStadium/:id", component : EditStadiumComponent},
 
 ];
     

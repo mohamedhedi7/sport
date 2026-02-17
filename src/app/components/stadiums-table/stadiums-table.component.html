@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Team</th>
+      <th scope="col">Country</th>
+      <th scope="col">Capacity</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of stadiums">
+      <th>{{s._id}}</th>
+      <td>{{s.name}}</td>
+      <td>{{s.teamId.name}}</td>
+      <td>{{s.country}}</td>
+      <td>{{s.capacite}}</td>
+      <td>
+        <button class="btn btn-success mr-2" (click)="goToInfo(s._id)">Info</button>
+        <button class="btn btn-warning mr-2" (click)="goToEdit(s._id)">Edit</button>
+        <button class="btn btn-danger" (click)="deleteStadium(s._id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
